@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Трансфер из аэропорта Мальпенса в Милан, Венецию, Верону</title>
-    <meta name="description" content="Трансфер из аэропорта Мальпенса. Фиксированная цена, без предоплаты, русскоговорящие водители, встреча с табличкой. От 90€.">
+    <title>Malpensa Transfer</title>
+    <meta name="description" content="Трансфер из аэропорта Мальпенса. Фиксированная цена, встреча с табличкой.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -54,6 +54,7 @@
 
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 
+        /* TYPOGRAPHY */
         .section-label {
             display: inline-flex; align-items: center; gap: 8px;
             font-size: 13px; font-weight: 600; text-transform: uppercase;
@@ -82,6 +83,22 @@
         .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(230,169,25,0.4); }
         .btn-whatsapp { background: #25d366; color: white; }
         .btn-whatsapp:hover { background: #20bd5a; transform: translateY(-2px); }
+
+        /* LANGUAGE SWITCHER */
+        .lang-switch {
+            display: flex; gap: 8px; align-items: center; margin-right: 15px;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--gray-400); padding: 5px 10px; border-radius: 8px;
+            font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .lang-btn.active {
+            background: var(--accent); color: var(--dark); border-color: var(--accent);
+        }
+        .lang-btn:hover:not(.active) { color: var(--white); border-color: var(--white); background: rgba(255,255,255,0.1); }
 
         /* MODAL */
         .modal-overlay {
@@ -142,6 +159,14 @@
             transition: color 0.3s; position: relative;
         }
         .nav a:hover { color: var(--white); }
+        .nav a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--accent); transition: width 0.3s;
+        }
+        .nav a:hover::after { width: 100%; }
+        
+        .header-actions { display: flex; align-items: center; gap: 16px; }
+
         .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
         .burger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
 
@@ -227,6 +252,7 @@
             color: var(--white); font-family: 'Inter', sans-serif; font-size: 14px;
             transition: all 0.3s; outline: none;
         }
+        .form-control option { background: var(--gray-900); }
         .form-control:focus { border-color: var(--accent); background: rgba(230,169,25,0.05); }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .hero-booking-form .btn-primary { padding: 14px 28px; font-size: 14px; margin-top: 8px; }
@@ -251,6 +277,8 @@
 
         /* CARS */
         .cars { padding: 100px 0; background: linear-gradient(180deg, var(--dark), rgba(26,26,46,0.4), var(--dark)); }
+        .cars-header { text-align: center; margin-bottom: 60px; }
+        .cars-header .section-subtitle { margin: 0 auto; }
         .cars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
         .car-card {
             background: rgba(255,255,255,0.03); border: 1px solid rgba(230,169,25,0.1);
@@ -281,8 +309,10 @@
         .car-price-row .price-value { font-size: 32px; font-weight: 800; color: var(--accent); }
         .btn-select-car { padding: 12px 28px; box-shadow: var(--shadow-button-glow); }
 
-        /* OTHER SECTIONS (Steps, Routes, Reviews, FAQ, CTA, Footer, Float) - Keep same styles as previous version */
+        /* OTHER SECTIONS */
         .how-it-works { padding: 100px 0; }
+        .how-header { text-align: center; margin-bottom: 70px; }
+        .how-header .section-subtitle { margin: 0 auto; }
         .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
         .step-card { text-align: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius); padding: 32px 24px; transition: all 0.4s; position: relative; }
         .step-card:hover { transform: translateY(-6px); border-color: rgba(230,169,25,0.2); }
@@ -292,6 +322,8 @@
         .step-card p { font-size: 14px; color: var(--gray-400); line-height: 1.6; }
 
         .routes { padding: 100px 0; }
+        .routes-header { text-align: center; margin-bottom: 60px; }
+        .routes-header .section-subtitle { margin: 0 auto; }
         .routes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .route-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); overflow: hidden; transition: all 0.4s; }
         .route-card:hover { transform: translateY(-6px); border-color: rgba(230,169,25,0.3); }
@@ -309,7 +341,10 @@
         .route-price { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
         .route-price .price { font-size: 28px; font-weight: 800; color: var(--accent); }
 
+        /* REVIEWS */
         .reviews { padding: 100px 0; background: linear-gradient(180deg, var(--dark), rgba(26,26,46,0.3), var(--dark)); }
+        .reviews-header { text-align: center; margin-bottom: 60px; }
+        .reviews-header .section-subtitle { margin: 0 auto; }
         .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .review-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius); padding: 32px; transition: all 0.4s; }
         .review-card:hover { transform: translateY(-4px); border-color: rgba(230,169,25,0.15); }
@@ -321,7 +356,10 @@
         .review-name { font-size: 15px; font-weight: 600; }
         .review-route { font-size: 12px; color: var(--gray-600); margin-top: 2px; }
 
+        /* FAQ */
         .faq { padding: 100px 0; }
+        .faq-header { text-align: center; margin-bottom: 60px; }
+        .faq-header .section-subtitle { margin: 0 auto; }
         .faq-grid { max-width: 800px; margin: 0 auto; }
         .faq-item { border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); margin-bottom: 12px; overflow: hidden; transition: all 0.3s; }
         .faq-item.active { border-color: rgba(230,169,25,0.2); }
@@ -333,10 +371,12 @@
         .faq-answer-inner { padding: 0 28px 22px; font-size: 15px; color: var(--gray-400); line-height: 1.7; }
         .faq-item.active .faq-answer { max-height: 300px; }
 
+        /* CTA */
         .cta-section { padding: 0 0 100px; }
         .cta-box { background: linear-gradient(135deg, rgba(230,169,25,0.12), rgba(230,169,25,0.03)); border: 1px solid rgba(230,169,25,0.2); border-radius: var(--radius-lg); padding: 70px 60px; text-align: center; position: relative; overflow: hidden; }
         .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
 
+        /* FOOTER */
         .footer { padding: 60px 0 0; border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 60px; }
         .footer-about p { font-size: 14px; color: var(--gray-400); line-height: 1.7; margin-bottom: 24px; margin-top: 20px; }
@@ -413,25 +453,25 @@
             <button class="modal-close" onclick="closeModal()">
                 <i class="fas fa-times"></i>
             </button>
-            <h3>Забронировать автомобиль</h3>
+            <h3 data-i18n="modal_title">Забронировать автомобиль</h3>
             <form id="modalForm">
                 <div class="form-group">
-                    <label>Выбранный класс авто</label>
+                    <label data-i18n="form_class">Выбранный класс авто</label>
                     <input type="text" class="form-control" id="selectedCar" readonly>
                 </div>
                 <div class="form-group">
-                    <label>Ваше имя</label>
-                    <input type="text" class="form-control" placeholder="Иванов Иван" required>
+                    <label data-i18n="form_name">Ваше имя</label>
+                    <input type="text" class="form-control" data-i18n-ph="placeholder_name" placeholder="Иванов Иван" required>
                 </div>
                 <div class="form-group">
-                    <label>Телефон / WhatsApp</label>
-                    <input type="tel" class="form-control" placeholder="+7 ..." required>
+                    <label data-i18n="form_phone">Телефон / WhatsApp</label>
+                    <input type="tel" class="form-control" data-i18n-ph="placeholder_phone" placeholder="+7 ..." required>
                 </div>
                 <div class="form-group">
-                    <label>Дата поездки</label>
+                    <label data-i18n="form_date">Дата поездки</label>
                     <input type="date" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;" data-i18n="btn_send">
                     Отправить заявку
                 </button>
             </form>
@@ -447,7 +487,7 @@
                         <i class="fas fa-phone"></i> +39 333 123 4567
                     </a>
                     <div class="top-bar-item">
-                        <i class="fas fa-clock"></i> Работаем 24/7
+                        <i class="fas fa-clock"></i> <span data-i18n="working_hours">Работаем 24/7</span>
                     </div>
                 </div>
                 <div class="top-bar-right">
@@ -456,8 +496,7 @@
                         <a href="https://t.me/" target="_blank"><i class="fab fa-telegram"></i></a>
                     </div>
                     <div class="top-bar-rating">
-                        <span>Яндекс ⭐ 4.9</span>
-                        <span>Google ⭐ 4.9</span>
+                        <span>⭐ 4.9</span>
                     </div>
                 </div>
             </div>
@@ -469,25 +508,27 @@
         <div class="container">
             <div class="header-inner">
                 <a href="#" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-plane-departure"></i>
-                    </div>
+                    <div class="logo-icon"><i class="fas fa-plane-departure"></i></div>
                     <div class="logo-text">Malpensa<span>Transfer</span></div>
                 </a>
                 <nav class="nav">
-                    <a href="#routes">Маршруты</a>
-                    <a href="#cars">Автопарк</a>
-                    <a href="#how">Как это работает</a>
-                    <a href="#reviews">Отзывы</a>
-                    <a href="#faq">FAQ</a>
+                    <a href="#routes" data-i18n="nav_routes">Маршруты</a>
+                    <a href="#cars" data-i18n="nav_fleet">Автопарк</a>
+                    <a href="#how" data-i18n="nav_how">Как это работает</a>
+                    <a href="#reviews" data-i18n="nav_reviews">Отзывы</a>
+                    <a href="#faq" data-i18n="nav_faq">FAQ</a>
                 </nav>
                 <div class="header-actions">
-                    <a href="#booking" class="btn btn-primary" style="padding: 12px 24px; font-size: 13px;">
+                    <!-- LANGUAGE SWITCHER IN HEADER -->
+                    <div class="lang-switch">
+                        <button type="button" class="lang-btn active" onclick="setLanguage('ru')">RU</button>
+                        <button type="button" class="lang-btn" onclick="setLanguage('en')">EN</button>
+                    </div>
+                    
+                    <a href="#booking" class="btn btn-primary" style="padding: 12px 24px; font-size: 13px;" data-i18n="btn_book">
                         Забронировать
                     </a>
-                    <div class="burger" onclick="toggleMobileMenu()">
-                        <span></span><span></span><span></span>
-                    </div>
+                    <div class="burger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
                 </div>
             </div>
         </div>
@@ -496,133 +537,126 @@
     <!-- Мобильное меню -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
-        <a href="#routes" onclick="toggleMobileMenu()">Маршруты</a>
-        <a href="#cars" onclick="toggleMobileMenu()">Автопарк</a>
-        <a href="#how" onclick="toggleMobileMenu()">Как это работает</a>
-        <a href="#reviews" onclick="toggleMobileMenu()">Отзывы</a>
-        <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
+        <a href="#routes" onclick="toggleMobileMenu()" data-i18n="nav_routes">Маршруты</a>
+        <a href="#cars" onclick="toggleMobileMenu()" data-i18n="nav_fleet">Автопарк</a>
+        <a href="#how" onclick="toggleMobileMenu()" data-i18n="nav_how">Как это работает</a>
+        <a href="#reviews" onclick="toggleMobileMenu()" data-i18n="nav_reviews">Отзывы</a>
+        <a href="#faq" onclick="toggleMobileMenu()" data-i18n="nav_faq">FAQ</a>
     </div>
 
-    <!-- ГЛАВНЫЙ ЭКРАН С БРОНИРОВАНИЕМ СПРАВА -->
+    <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero" id="home">
         <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80" alt="Дорога в Италии" style="opacity: 0.4; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80" alt="Italy Road" style="opacity: 0.4; width: 100%; height: 100%; object-fit: cover;">
         </div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-left">
                     <div class="hero-badge">
-                        <i class="fas fa-star"></i>
-                        Премиум трансфер по Италии
+                        <i class="fas fa-star"></i> <span data-i18n="hero_badge">Премиум трансфер по Италии</span>
                     </div>
 
-                    <!-- ЗАГОЛОВОК БЕЗ ЗАСЕЧЕК -->
-                    <h1 class="hero-title">
+                    <h1 class="hero-title" data-i18n="hero_title">
                         Трансфер из аэропорта<br>
                         <span class="highlight">Мальпенса</span>
                     </h1>
-                    <p class="hero-subtitle">
+                    <p class="hero-subtitle" data-i18n="hero_subtitle">
                         в Венецию, Верону, Милан и другие города Италии
                     </p>
 
-                    <!-- ТРИГГЕРЫ ТЕПЕРЬ С ИКОНКАМИ -->
                     <div class="hero-triggers-row-1">
-                        <span class="price">от 90€</span>
-                        <span>✅ Встреча с именной табличкой</span>
-                        <span>✅ Авто высшего класса</span>
+                        <span class="price" data-i18n="trig_price">от 90€</span>
+                        <span>✅ <span data-i18n="trig_meet">Встреча с табличкой</span></span>
+                        <span>✅ <span data-i18n="trig_premium">Авто высшего класса</span></span>
                     </div>
                     <div class="hero-triggers-row-2">
-                        <span>Фиксированная цена</span>
+                        <span data-i18n="trig_fixed">Фиксированная цена</span>
                         <span>|</span>
-                        <span>Без предоплаты</span>
+                        <span data-i18n="trig_noprepay">Без предоплаты</span>
                     </div>
-                    <!-- ИКОНКИ ДЛЯ ТРИГГЕРОВ -->
                     <div class="hero-triggers-row-3">
-                        <span><i class="fas fa-user-tie"></i> Русскоговорящие водители</span>
-                        <span><i class="fas fa-map-marker-alt"></i> Встреча у выхода из зоны прилёта</span>
-                        <span><i class="fas fa-wallet"></i> Оплата по факту</span>
+                        <span><i class="fas fa-user-tie"></i> <span data-i18n="feat_driver">Русскоговорящие водители</span></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="feat_meet">Встреча у выхода</span></span>
+                        <span><i class="fas fa-wallet"></i> <span data-i18n="feat_pay">Оплата по факту</span></span>
                     </div>
 
                     <div class="hero-buttons">
-                        <a href="#booking" class="btn btn-primary">
-                            <i class="fas fa-calendar-check"></i>
-                            Забронировать
+                        <a href="#booking" class="btn btn-primary" data-i18n="btn_book_transfer">
+                            <i class="fas fa-calendar-check"></i> Забронировать
                         </a>
                         <a href="https://wa.me/393331234567" class="btn btn-whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                            WhatsApp
+                            <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
                     </div>
 
                     <div class="hero-stats">
                         <div>
                             <div class="hero-stat-number">12+</div>
-                            <div class="hero-stat-label">Лет опыта</div>
+                            <div class="hero-stat-label" data-i18n="stat_exp">Лет опыта</div>
                         </div>
                         <div>
                             <div class="hero-stat-number">15K+</div>
-                            <div class="hero-stat-label">Довольных клиентов</div>
+                            <div class="hero-stat-label" data-i18n="stat_cli">Довольных клиентов</div>
                         </div>
                         <div>
                             <div class="hero-stat-number">4.9</div>
-                            <div class="hero-stat-label">Рейтинг</div>
+                            <div class="hero-stat-label" data-i18n="stat_rate">Рейтинг</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- БЛОК БРОНИРОВАНИЯ СПРАВА С ФОНОМ АВТО -->
+                <!-- БЛОК БРОНИРОВАНИЯ -->
                 <div class="hero-right">
-                    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=900&q=80" alt="Премиум автомобиль Mercedes" class="hero-right-bg-img">
+                    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=900&q=80" alt="Mercedes" class="hero-right-bg-img">
                     
                     <div class="hero-booking-form" id="booking">
-                        <h3>Быстрое бронирование</h3>
-                        <p>Оставьте заявку, мы свяжемся с вами в течение 15 минут</p>
+                        <h3 data-i18n="form_title">Быстрое бронирование</h3>
+                        <p data-i18n="form_desc">Оставьте заявку, мы свяжемся с вами в течение 15 минут</p>
                         <form id="mainBookingForm">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label>Ваше ФИО</label>
-                                    <input type="text" class="form-control" placeholder="Иванов Иван" required>
+                                    <label data-i18n="form_name">Ваше имя</label>
+                                    <input type="text" class="form-control" data-i18n-ph="placeholder_name" placeholder="Иванов Иван" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Телефон</label>
-                                    <input type="tel" class="form-control" placeholder="+7..." required>
+                                    <label data-i18n="form_phone">Телефон</label>
+                                    <input type="tel" class="form-control" data-i18n-ph="placeholder_phone" placeholder="+7..." required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label>Откуда</label>
+                                    <label data-i18n="form_from">Откуда</label>
                                     <select class="form-control">
-                                        <option>Аэропорт Мальпенса</option>
-                                        <option>Аэропорт Бергамо</option>
-                                        <option>Аэропорт Линате</option>
+                                        <option>Malpensa (MXP)</option>
+                                        <option>Bergamo (BGY)</option>
+                                        <option>Linate (LIN)</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Куда</label>
-                                    <input type="text" class="form-control" placeholder="Город, отель">
+                                    <label data-i18n="form_to">Куда</label>
+                                    <input type="text" class="form-control" data-i18n-ph="placeholder_to" placeholder="Город, отель">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label>Дата</label>
+                                    <label data-i18n="form_date">Дата</label>
                                     <input type="date" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Класс авто</label>
+                                    <label data-i18n="form_class">Класс авто</label>
                                     <select class="form-control">
-                                        <option>Стандарт</option>
-                                        <option>Бизнес</option>
-                                        <option>Минивэн</option>
-                                        <option>VIP</option>
+                                        <option value="Standard" data-i18n="car_standard">Стандарт</option>
+                                        <option value="Business" data-i18n="car_business">Бизнес</option>
+                                        <option value="Minivan" data-i18n="car_minivan">Минивэн</option>
+                                        <option value="VIP" data-i18n="car_vip">VIP</option>
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                                <i class="fas fa-paper-plane"></i>
-                                Отправить заявку
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" data-i18n="btn_send">
+                                <i class="fas fa-paper-plane"></i> Отправить заявку
                             </button>
                             <div class="booking-note">
-                                <i class="fab fa-whatsapp" style="color: #25d366"></i> Ответим в WhatsApp за 15 минут
+                                <i class="fab fa-whatsapp" style="color: #25d366"></i> <span data-i18n="wa_note">Ответим в WhatsApp за 15 минут</span>
                             </div>
                         </form>
                     </div>
@@ -631,91 +665,102 @@
         </div>
     </section>
 
-    <!-- БЛОК ПРЕИМУЩЕСТВ (11 пунктов из ТЗ) -->
+    <!-- БЛОК ПРЕИМУЩЕСТВ (11 ПУНКТОВ) -->
     <section class="advantages" id="advantages">
         <div class="container">
             <div class="advantages-header animate-on-scroll">
-                <div class="section-label">Наши преимущества</div>
-                <h2 class="section-title">Почему стоит выбрать нас</h2>
-                <p class="section-subtitle">Мы берем на себя все заботы о вашей комфортной поездке</p>
+                <div class="section-label" data-i18n="adv_label">Наши преимущества</div>
+                <h2 class="section-title" data-i18n="adv_title">Почему стоит выбрать нас</h2>
+                <p class="section-subtitle" data-i18n="adv_subtitle">Мы берем на себя все заботы о вашей комфортной поездке</p>
             </div>
 
             <div class="advantages-grid">
+                <!-- 1 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-tag"></i></div>
                     <div>
-                        <h4>Фиксированная цена</h4>
-                        <p>Без скрытых доплат, цена не меняется от пробок и задержек рейса.</p>
+                        <h4 data-i18n="adv_1_h">Фиксированная цена</h4>
+                        <p data-i18n="adv_1_p">Фиксированная цена — без скрытых доплат</p>
                     </div>
                 </div>
+                <!-- 2 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-money-bill-wave"></i></div>
                     <div>
-                        <h4>Без предоплаты</h4>
-                        <p>Оплата водителю только по факту прибытия в пункт назначения.</p>
+                        <h4 data-i18n="adv_2_h">Без предоплаты</h4>
+                        <p data-i18n="adv_2_p">Без предоплаты — оплата водителю по прибытии</p>
                     </div>
                 </div>
+                <!-- 3 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-ban"></i></div>
                     <div>
-                        <h4>Бесплатная отмена за 24 часа</h4>
-                        <p>Без штрафов и лишних вопросов, если ваши планы поменялись.</p>
+                        <h4 data-i18n="adv_3_h">Бесплатная отмена</h4>
+                        <p data-i18n="adv_3_p">Бесплатная отмена за 24 часа</p>
                     </div>
                 </div>
+                <!-- 4 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-plane-arrival"></i></div>
                     <div>
-                        <h4>Мониторинг рейсов</h4>
-                        <p>Мы автоматически подстраиваемся под задержки вашего рейса.</p>
+                        <h4 data-i18n="adv_4_h">Мониторинг рейсов</h4>
+                        <p data-i18n="adv_4_p">Мониторинг рейсов — подстраиваемся под задержки</p>
                     </div>
                 </div>
+                <!-- 5 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-comments"></i></div>
                     <div>
-                        <h4>Русскоговорящие водители</h4>
-                        <p>Никаких языковых барьеров, мы всегда поймем друг друга.</p>
+                        <h4 data-i18n="adv_5_h">Русскоговорящие водители</h4>
+                        <p data-i18n="adv_5_p">Русскоговорящие водители</p>
                     </div>
                 </div>
+                <!-- 6 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-suitcase"></i></div>
                     <div>
-                        <h4>Ответственность за багаж</h4>
-                        <p>Мы несем полную ответственность за сохранность вашего багажа.</p>
+                        <h4 data-i18n="adv_6_h">Багаж</h4>
+                        <p data-i18n="adv_6_p">Ответственность за сохранность багажа</p>
                     </div>
                 </div>
+                <!-- 7 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-clock"></i></div>
                     <div>
-                        <h4>Мы всегда вас ждем</h4>
-                        <p>Даже если ваш самолёт задерживается на несколько часов.</p>
+                        <h4 data-i18n="adv_7_h">Мы Вас ожидаем</h4>
+                        <p data-i18n="adv_7_p">Даже если Ваш самолёт задерживается</p>
                     </div>
                 </div>
+                <!-- 8 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-check-circle"></i></div>
                     <div>
-                        <h4>Пунктуальность</h4>
-                        <p>Трансфер прибудет по указанному вами адресу ровно вовремя.</p>
+                        <h4 data-i18n="adv_8_h">Вовремя</h4>
+                        <p data-i18n="adv_8_p">Трансфер будет по указанному адресу вовремя</p>
                     </div>
                 </div>
+                <!-- 9 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-car"></i></div>
                     <div>
-                        <h4>Современный автопарк</h4>
-                        <p>Автомобили различного класса, комфортно доставим вас по назначению.</p>
+                        <h4 data-i18n="adv_9_h">Современные автомобили</h4>
+                        <p data-i18n="adv_9_p">Современные автомобили различного класса Комфортно и удобно доставят Вас по назначению</p>
                     </div>
                 </div>
+                <!-- 10 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-handshake"></i></div>
                     <div>
-                        <h4>Работаем без посредников</h4>
-                        <p>Все нюансы обсуждаем заранее, чтобы всё прошло как вам удобно.</p>
+                        <h4 data-i18n="adv_10_h">Без посредников</h4>
+                        <p data-i18n="adv_10_p">Мы работаем без посредников - Все нюансы обсуждаем заранее, чтобы всё прошло именно так, как вам удобно.</p>
                     </div>
                 </div>
+                <!-- 11 -->
                 <div class="advantage-card animate-on-scroll">
                     <div class="advantage-icon"><i class="fas fa-road"></i></div>
                     <div>
-                        <h4>Разрешения на проезд в ЗТД</h4>
-                        <p>Наши водители имеют разрешения для проезда в зоны с ограниченным движением.</p>
+                        <h4 data-i18n="adv_11_h">Проезд в ЗТД</h4>
+                        <p data-i18n="adv_11_p">Наши водители имеют разрешения для проезда в зонах с ограниченным движением и привилегии для использования специальных полос движения.</p>
                     </div>
                 </div>
             </div>
@@ -726,131 +771,126 @@
     <section class="how-it-works" id="how">
         <div class="container">
             <div class="how-header animate-on-scroll">
-                <div class="section-label">Просто и удобно</div>
-                <h2 class="section-title">Как заказать трансфер</h2>
-                <p class="section-subtitle">Четыре простых шага от заявки до комфортной поездки</p>
+                <div class="section-label" data-i18n="how_label">Просто и удобно</div>
+                <h2 class="section-title" data-i18n="how_title">Как заказать трансфер</h2>
             </div>
 
             <div class="steps-grid">
                 <div class="step-card animate-on-scroll">
                     <div class="step-number">1</div>
-                    <h4>Оставьте заявку</h4>
-                    <p>Через форму на сайте, звонок или сообщение в любом мессенджере</p>
+                    <h4 data-i18n="step_1_h">Оставьте заявку</h4>
+                    <p data-i18n="step_1_p">Через форму на сайте, звонок или сообщение.</p>
                 </div>
                 <div class="step-card animate-on-scroll">
                     <div class="step-number">2</div>
-                    <h4>Получите подтверждение</h4>
-                    <p>Мы пришлем точную стоимость, детали поездки и имя водителя</p>
+                    <h4 data-i18n="step_2_h">Подтверждение</h4>
+                    <p data-i18n="step_2_p">Мы пришлем стоимость и детали поездки.</p>
                 </div>
                 <div class="step-card animate-on-scroll">
                     <div class="step-number">3</div>
-                    <h4>Встреча в аэропорту</h4>
-                    <p>Водитель встретит вас с именной табличкой у выхода из зоны прилёта</p>
+                    <h4 data-i18n="step_3_h">Встреча</h4>
+                    <p data-i18n="step_3_p">Водитель встретит вас с табличкой.</p>
                 </div>
                 <div class="step-card animate-on-scroll">
                     <div class="step-number">4</div>
-                    <h4>Комфортная поездка</h4>
-                    <p>Вы оплачиваете поездку наличными или картой по прибытии на место</p>
+                    <h4 data-i18n="step_4_h">Поездка</h4>
+                    <p data-i18n="step_4_p">Оплата наличными или картой по прибытии.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- АВТОПАРК С ФОТОГРАФИЯМИ -->
+    <!-- АВТОПАРК -->
     <section class="cars" id="cars">
         <div class="container">
             <div class="cars-header animate-on-scroll">
-                <div class="section-label">Наш автопарк</div>
-                <h2 class="section-title">Выберите подходящий класс автомобиля</h2>
-                <p class="section-subtitle">Все автомобили проходят регулярное техобслуживание, всегда чистые и подготовлены к поездке</p>
+                <div class="section-label" data-i18n="fleet_label">Наш автопарк</div>
+                <h2 class="section-title" data-i18n="fleet_title">Выберите автомобиль</h2>
             </div>
 
             <div class="cars-grid">
+                <!-- Standard -->
                 <div class="car-card animate-on-scroll">
                     <div class="car-image">
-                        <div class="car-class-badge">Стандарт</div>
-                        <!-- ФОТО: Универсальный седан -->
-                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80" alt="Sedan Car">
+                        <div class="car-class-badge" data-i18n="car_standard">Стандарт</div>
+                        <img src="https://images.unsplash.com/photo-1626668893632-6f39379f7228?w=600&q=80" alt="Volkswagen Passat">
                     </div>
                     <div class="car-body">
                         <div>
                             <h4>Volkswagen Passat</h4>
                             <div class="car-specs">
-                                <div class="car-spec"><i class="fas fa-users"></i> 3 пассажира + 3 чемодана</div>
-                                <div class="car-spec"><i class="fas fa-snowflake"></i> Климат-контроль</div>
-                                <div class="car-spec"><i class="fas fa-wifi"></i> Бесплатный Wi-Fi</div>
-                                <div class="car-spec"><i class="fas fa-baby"></i> Детское кресло бесплатно</div>
+                                <div class="car-spec"><i class="fas fa-users"></i> 3 <span data-i18n="pax">пасс.</span> + 3 <span data-i18n="bag">чемодана</span></div>
+                                <div class="car-spec"><i class="fas fa-wifi"></i> Wi-Fi</div>
+                                <div class="car-spec"><i class="fas fa-baby"></i> <span data-i18n="spec_seat">Детское кресло</span></div>
                             </div>
                         </div>
                         <div class="car-price-row">
-                            <div class="price-value">от €90</div>
-                            <button class="btn btn-primary btn-select-car" onclick="openModal('Стандарт / Volkswagen Passat')">Выбрать</button>
+                            <div class="price-value" data-i18n="price_from_90">от €90</div>
+                            <button class="btn btn-primary btn-select-car" onclick="openModal('Standard')" data-i18n="btn_select">Выбрать</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Business -->
                 <div class="car-card animate-on-scroll">
                     <div class="car-image">
-                        <div class="car-class-badge">Бизнес</div>
-                        <!-- ФОТО: Mercedes E-Class -->
+                        <div class="car-class-badge" data-i18n="car_business">Бизнес</div>
                         <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&q=80" alt="Mercedes E-Class">
                     </div>
                     <div class="car-body">
                         <div>
                             <h4>Mercedes-Benz E-Class</h4>
                             <div class="car-specs">
-                                <div class="car-spec"><i class="fas fa-users"></i> 3 пассажира + 4 чемодана</div>
-                                <div class="car-spec"><i class="fas fa-couch"></i> Улучшенная шумоизоляция</div>
-                                <div class="car-spec"><i class="fas fa-wifi"></i> Wi-Fi, вода, зарядка</div>
+                                <div class="car-spec"><i class="fas fa-users"></i> 3 <span data-i18n="pax">пасс.</span> + 4 <span data-i18n="bag">чемодана</span></div>
+                                <div class="car-spec"><i class="fas fa-couch"></i> <span data-i18n="spec_comfort">Комфорт</span></div>
+                                <div class="car-spec"><i class="fas fa-tint"></i> <span data-i18n="spec_water">Вода</span></div>
                             </div>
                         </div>
                         <div class="car-price-row">
-                            <div class="price-value">от €120</div>
-                            <button class="btn btn-primary btn-select-car" onclick="openModal('Бизнес / Mercedes E-Class')">Выбрать</button>
+                            <div class="price-value" data-i18n="price_from_120">от €120</div>
+                            <button class="btn btn-primary btn-select-car" onclick="openModal('Business')" data-i18n="btn_select">Выбрать</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Minivan -->
                 <div class="car-card animate-on-scroll">
                     <div class="car-image">
-                        <div class="car-class-badge">Минивэн</div>
-                        <!-- ФОТО: Mercedes V-Class (Interior/Exterior hint) -->
+                        <div class="car-class-badge" data-i18n="car_minivan">Минивэн</div>
                         <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80" alt="Mercedes V-Class">
                     </div>
                     <div class="car-body">
                         <div>
                             <h4>Mercedes-Benz V-Class</h4>
                             <div class="car-specs">
-                                <div class="car-spec"><i class="fas fa-users"></i> до 7 пассажиров + 7 чемоданов</div>
-                                <div class="car-spec"><i class="fas fa-chair"></i> Кожаные кресла</div>
-                                <div class="car-spec"><i class="fas fa-tv"></i> Мультимедиа экраны</div>
+                                <div class="car-spec"><i class="fas fa-users"></i> 7 <span data-i18n="pax">пасс.</span> + 7 <span data-i18n="bag">чемоданов</span></div>
+                                <div class="car-spec"><i class="fas fa-chair"></i> <span data-i18n="spec_leather">Кожаный салон</span></div>
                             </div>
                         </div>
                         <div class="car-price-row">
-                            <div class="price-value">от €150</div>
-                            <button class="btn btn-primary btn-select-car" onclick="openModal('Минивэн / Mercedes V-Class')">Выбрать</button>
+                            <div class="price-value" data-i18n="price_from_150">от €150</div>
+                            <button class="btn btn-primary btn-select-car" onclick="openModal('Minivan')" data-i18n="btn_select">Выбрать</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- VIP -->
                 <div class="car-card animate-on-scroll">
                     <div class="car-image">
-                        <div class="car-class-badge">VIP</div>
-                        <!-- ФОТО: Mercedes Sprinter -->
+                        <div class="car-class-badge" data-i18n="car_vip">VIP</div>
                         <img src="https://images.unsplash.com/photo-1562920616-0b63ffa8946e?w=600&q=80" alt="Mercedes Sprinter">
                     </div>
                     <div class="car-body">
                         <div>
                             <h4>Mercedes Sprinter VIP</h4>
                             <div class="car-specs">
-                                <div class="car-spec"><i class="fas fa-users"></i> до 16 пассажиров + багаж</div>
-                                <div class="car-spec"><i class="fas fa-snowflake"></i> Индивидуальный климат</div>
-                                <div class="car-spec"><i class="fas fa-user-tie"></i> Персональный водитель</div>
+                                <div class="car-spec"><i class="fas fa-users"></i> 16 <span data-i18n="pax">пасс.</span></div>
+                                <div class="car-spec"><i class="fas fa-snowflake"></i> <span data-i18n="spec_ac">Климат</span></div>
                             </div>
                         </div>
                         <div class="car-price-row">
-                            <div class="price-value">от €220</div>
-                            <button class="btn btn-primary btn-select-car" onclick="openModal('VIP / Mercedes Sprinter')">Выбрать</button>
+                            <div class="price-value" data-i18n="price_from_220">от €220</div>
+                            <button class="btn btn-primary btn-select-car" onclick="openModal('VIP')" data-i18n="btn_select">Выбрать</button>
                         </div>
                     </div>
                 </div>
@@ -862,58 +902,39 @@
     <section class="routes" id="routes">
         <div class="container">
             <div class="routes-header animate-on-scroll">
-                <div class="section-label">Популярные направления</div>
-                <h2 class="section-title">Фиксированные цены на маршруты</h2>
-                <p class="section-subtitle">В цену уже включены все платные дороги, ожидание рейса и багаж</p>
+                <div class="section-label" data-i18n="routes_label">Популярные направления</div>
+                <h2 class="section-title" data-i18n="routes_title">Фиксированные цены</h2>
             </div>
 
             <div class="routes-grid">
                 <div class="route-card popular animate-on-scroll">
-                    <div class="route-popular-badge">Популярный</div>
-                    <div class="route-image">
-                        <img src="https://images.unsplash.com/photo-1513581166391-887a96ddeafd?w=600&q=80" alt="Милан">
-                    </div>
+                    <div class="route-popular-badge" data-i18n="badge_popular">Популярный</div>
+                    <div class="route-image"><img src="https://images.unsplash.com/photo-1513581166391-887a96ddeafd?w=600&q=80" alt="Милан"></div>
                     <div class="route-body">
-                        <h4>Мальпенса → Милан</h4>
-                        <div class="route-info">
-                            <div class="route-info-item"><i class="fas fa-road"></i> 50 км</div>
-                            <div class="route-info-item"><i class="fas fa-clock"></i> ~50 мин</div>
-                        </div>
+                        <h4>Malpensa → Milano</h4>
                         <div class="route-price">
                             <div class="price">€90</div>
-                            <button class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;" onclick="openModal('Стандарт')">Заказать</button>
+                            <button class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;" onclick="openModal('Standard')" data-i18n="btn_order">Заказать</button>
                         </div>
                     </div>
                 </div>
                 <div class="route-card animate-on-scroll">
-                    <div class="route-image">
-                        <img src="https://images.unsplash.com/photo-1555992457-b8fefdd09069?w=600&q=80" alt="Комо">
-                    </div>
+                    <div class="route-image"><img src="https://images.unsplash.com/photo-1555992457-b8fefdd09069?w=600&q=80" alt="Комо"></div>
                     <div class="route-body">
-                        <h4>Мальпенса → Комо</h4>
-                        <div class="route-info">
-                            <div class="route-info-item"><i class="fas fa-road"></i> 80 км</div>
-                            <div class="route-info-item"><i class="fas fa-clock"></i> ~1 ч 10 мин</div>
-                        </div>
+                        <h4>Malpensa → Como</h4>
                         <div class="route-price">
                             <div class="price">€120</div>
-                            <button class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;" onclick="openModal('Стандарт')">Заказать</button>
+                            <button class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;" onclick="openModal('Standard')" data-i18n="btn_order">Заказать</button>
                         </div>
                     </div>
                 </div>
                 <div class="route-card animate-on-scroll">
-                    <div class="route-image">
-                        <img src="https://images.unsplash.com/photo-1580979529864-76c7e48b6f70?w=600&q=80" alt="Верона">
-                    </div>
+                    <div class="route-image"><img src="https://images.unsplash.com/photo-1580979529864-76c7e48b6f70?w=600&q=80" alt="Верона"></div>
                     <div class="route-body">
-                        <h4>Мальпенса → Верона</h4>
-                        <div class="route-info">
-                            <div class="route-info-item"><i class="fas fa-road"></i> 200 км</div>
-                            <div class="route-info-item"><i class="fas fa-clock"></i> ~2 ч 15 мин</div>
-                        </div>
+                        <h4>Malpensa → Verona</h4>
                         <div class="route-price">
                             <div class="price">€280</div>
-                            <button class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;" onclick="openModal('Стандарт')">Заказать</button>
+                            <button class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;" onclick="openModal('Standard')" data-i18n="btn_order">Заказать</button>
                         </div>
                     </div>
                 </div>
@@ -1048,50 +1069,23 @@
                         <div class="logo-icon"><i class="fas fa-plane-departure"></i></div>
                         <div class="logo-text">Malpensa<span>Transfer</span></div>
                     </a>
-                    <p>Премиальный сервис индивидуальных трансферов из аэропортов Милана. Работаем с 2012 года, более 15 000 довольных клиентов.</p>
-                    <div class="footer-social">
-                        <a href="https://wa.me/393331234567"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
+                    <p data-i18n="footer_text">Премиальный сервис трансферов. Работаем с 2012 года.</p>
                 </div>
                 <div class="footer-col">
-                    <h5>Популярные маршруты</h5>
+                    <h5 data-i18n="footer_contacts">Контакты</h5>
                     <ul>
-                        <li><a href="#">Мальпенса → Милан</a></li>
-                        <li><a href="#">Мальпенса → Комо</a></li>
-                        <li><a href="#">Мальпенса → Верона</a></li>
-                        <li><a href="#">Мальпенса → Венеция</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Информация</h5>
-                    <ul>
-                        <li><a href="#">О компании</a></li>
-                        <li><a href="#">Автопарк</a></li>
-                        <li><a href="#">Условия обслуживания</a></li>
-                        <li><a href="#">Политика отмены</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Контакты</h5>
-                    <ul>
-                        <li><a href="tel:+393331234567"><i class="fas fa-phone"></i> +39 333 123 4567</a></li>
-                        <li><a href="mailto:info@malpensa-transfer.it"><i class="fas fa-envelope"></i> info@malpensa-transfer.it</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Милан, Италия</a></li>
+                        <li><a href="tel:+393331234567">+39 333 123 4567</a></li>
+                        <li><a href="mailto:info@malpensa-transfer.it">info@malpensa-transfer.it</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 Malpensa Transfer. Все права защищены.</p>
-                <div>
-                    <span style="color: var(--gray-600); font-size: 13px;">Яндекс ⭐ 4.9 | Google ⭐ 4.9</span>
-                </div>
+                <p>© 2025 Malpensa Transfer</p>
             </div>
         </div>
     </footer>
 
-    <!-- ПЛАВАЮЩИЕ КНОПКИ -->
+    <!-- FLOAT -->
     <div class="float-buttons">
         <button class="float-btn top" id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
         <a href="https://wa.me/393331234567" class="float-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -1099,6 +1093,219 @@
     </div>
 
     <script>
+        // === TRANSLATIONS ===
+        const translations = {
+            ru: {
+                modal_title: "Забронировать автомобиль",
+                form_class: "Выбранный класс авто",
+                form_name: "Ваше имя",
+                placeholder_name: "Иван Иванов",
+                form_phone: "Телефон / WhatsApp",
+                placeholder_phone: "+7 ...",
+                form_from: "Откуда",
+                form_to: "Куда",
+                placeholder_to: "Город, отель",
+                form_date: "Дата поездки",
+                form_title: "Быстрое бронирование",
+                form_desc: "Оставьте заявку, мы свяжемся с вами в течение 15 минут",
+                btn_send: "Отправить заявку",
+                working_hours: "Работаем 24/7",
+                nav_routes: "Маршруты",
+                nav_fleet: "Автопарк",
+                nav_how: "Как это работает",
+                nav_reviews: "Отзывы",
+                nav_faq: "FAQ",
+                btn_book: "Забронировать",
+                hero_badge: "Премиум трансфер по Италии",
+                hero_title: "Трансфер из аэропорта<br><span class='highlight'>Мальпенса</span>",
+                hero_subtitle: "в Венецию, Верону, Милан и другие города Италии",
+                trig_price: "от 90€",
+                trig_meet: "Встреча с табличкой",
+                trig_premium: "Авто высшего класса",
+                trig_fixed: "Фиксированная цена",
+                trig_noprepay: "Без предоплаты",
+                feat_driver: "Русскоговорящие водители",
+                feat_meet: "Встреча у выхода",
+                feat_pay: "Оплата по факту",
+                btn_book_transfer: "Забронировать",
+                stat_exp: "Лет опыта",
+                stat_cli: "Довольных клиентов",
+                stat_rate: "Рейтинг",
+                wa_note: "Ответим в WhatsApp за 15 минут",
+                adv_label: "Наши преимущества",
+                adv_title: "Почему стоит выбрать нас",
+                adv_subtitle: "Мы берем на себя все заботы о вашей комфортной поездке",
+                adv_1_h: "Фиксированная цена",
+                adv_1_p: "Фиксированная цена — без скрытых доплат",
+                adv_2_h: "Без предоплаты",
+                adv_2_p: "Без предоплаты — оплата водителю по прибытии",
+                adv_3_h: "Бесплатная отмена",
+                adv_3_p: "Бесплатная отмена за 24 часа",
+                adv_4_h: "Мониторинг рейсов",
+                adv_4_p: "Мониторинг рейсов — подстраиваемся под задержки",
+                adv_5_h: "Русскоговорящие водители",
+                adv_5_p: "Русскоговорящие водители",
+                adv_6_h: "Багаж",
+                adv_6_p: "Ответственность за сохранность багажа",
+                adv_7_h: "Мы Вас ожидаем",
+                adv_7_p: "Даже если Ваш самолёт задерживается",
+                adv_8_h: "Вовремя",
+                adv_8_p: "Трансфер будет по указанному адресу вовремя",
+                adv_9_h: "Современные автомобили",
+                adv_9_p: "Современные автомобили различного класса Комфортно и удобно доставят Вас по назначению",
+                adv_10_h: "Без посредников",
+                adv_10_p: "Мы работаем без посредников - Все нюансы обсуждаем заранее, чтобы всё прошло именно так, как вам удобно.",
+                adv_11_h: "Проезд в ЗТД",
+                adv_11_p: "Наши водители имеют разрешения для проезда в зонах с ограниченным движением и привилегии для использования специальных полос движения.",
+                how_label: "Просто и удобно",
+                how_title: "Как заказать трансфер",
+                step_1_h: "Оставьте заявку",
+                step_1_p: "Через форму на сайте или сообщение.",
+                step_2_h: "Подтверждение",
+                step_2_p: "Мы пришлем стоимость и детали.",
+                step_3_h: "Встреча",
+                step_3_p: "Водитель встретит вас с табличкой.",
+                step_4_h: "Поездка",
+                step_4_p: "Оплата наличными или картой по прибытии.",
+                fleet_label: "Наш автопарк",
+                fleet_title: "Выберите автомобиль",
+                car_standard: "Стандарт",
+                car_business: "Бизнес",
+                car_minivan: "Минивэн",
+                car_vip: "VIP",
+                pax: "пасс.",
+                bag: "чемодана",
+                spec_seat: "Детское кресло",
+                spec_comfort: "Комфорт",
+                spec_water: "Вода",
+                spec_leather: "Кожаный салон",
+                spec_ac: "Климат",
+                price_from_90: "от €90",
+                price_from_120: "от €120",
+                price_from_150: "от €150",
+                price_from_220: "от €220",
+                btn_select: "Выбрать",
+                routes_label: "Направления",
+                routes_title: "Популярные маршруты",
+                badge_popular: "Популярный",
+                btn_order: "Заказать",
+                footer_text: "Премиальный сервис трансферов. Работаем с 2012 года.",
+                footer_contacts: "Контакты"
+            },
+            en: {
+                modal_title: "Book a Transfer",
+                form_class: "Selected Car Class",
+                form_name: "Your Name",
+                placeholder_name: "John Doe",
+                form_phone: "Phone / WhatsApp",
+                placeholder_phone: "+1 ...",
+                form_from: "From",
+                form_to: "To",
+                placeholder_to: "City, Hotel",
+                form_date: "Date",
+                form_title: "Quick Booking",
+                form_desc: "Leave a request, we will contact you within 15 minutes",
+                btn_send: "Send Request",
+                working_hours: "24/7 Service",
+                nav_routes: "Routes",
+                nav_fleet: "Fleet",
+                nav_how: "How it works",
+                nav_reviews: "Reviews",
+                nav_faq: "FAQ",
+                btn_book: "Book Now",
+                hero_badge: "Premium Transfer in Italy",
+                hero_title: "Airport Transfer<br>from <span class='highlight'>Malpensa</span>",
+                hero_subtitle: "to Venice, Verona, Milan and other Italian cities",
+                trig_price: "from 90€",
+                trig_meet: "Meet & Greet",
+                trig_premium: "Premium Cars",
+                trig_fixed: "Fixed Price",
+                trig_noprepay: "No Prepayment",
+                feat_driver: "English-speaking drivers",
+                feat_meet: "Meeting at the exit",
+                feat_pay: "Pay upon arrival",
+                btn_book_transfer: "Book Transfer",
+                stat_exp: "Years exp.",
+                stat_cli: "Happy Clients",
+                stat_rate: "Rating",
+                wa_note: "We reply in WhatsApp in 15 mins",
+                adv_label: "Our Advantages",
+                adv_title: "Why Choose Us",
+                adv_subtitle: "We take care of everything for your comfortable trip",
+                adv_1_h: "Fixed Price",
+                adv_1_p: "No hidden fees, price doesn't change due to traffic.",
+                adv_2_h: "No Prepayment",
+                adv_2_p: "Pay the driver only upon arrival at destination.",
+                adv_3_h: "Free Cancellation",
+                adv_3_p: "Free cancellation 24 hours before the trip.",
+                adv_4_h: "Flight Monitoring",
+                adv_4_p: "We automatically adjust to flight delays.",
+                adv_5_h: "English-speaking drivers",
+                adv_5_p: "No language barriers, professional service.",
+                adv_6_h: "Luggage",
+                adv_6_p: "We are responsible for the safety of your luggage.",
+                adv_7_h: "We Wait for You",
+                adv_7_p: "Even if your flight is delayed, we will wait.",
+                adv_8_h: "Punctuality",
+                adv_8_p: "The transfer will arrive exactly on time.",
+                adv_9_h: "Modern Fleet",
+                adv_9_p: "Cars of various classes for a comfortable trip.",
+                adv_10_h: "Direct Service",
+                adv_10_p: "No intermediaries. We discuss all details in advance.",
+                adv_11_h: "ZTL Access",
+                adv_11_p: "Access to limited traffic zones in Italian cities.",
+                how_label: "Simple & Easy",
+                how_title: "How to Book",
+                step_1_h: "Leave a Request",
+                step_1_p: "Via website form or message.",
+                step_2_h: "Confirmation",
+                step_2_p: "We send details and price.",
+                step_3_h: "Meeting",
+                step_3_p: "Driver meets you with a nameplate.",
+                step_4_h: "The Trip",
+                step_4_p: "Pay cash or card upon arrival.",
+                fleet_label: "Our Fleet",
+                fleet_title: "Choose a Vehicle",
+                car_standard: "Standard",
+                car_business: "Business",
+                car_minivan: "Minivan",
+                car_vip: "VIP",
+                pax: "pax.",
+                bag: "bags",
+                spec_seat: "Child Seat",
+                spec_comfort: "Comfort",
+                spec_water: "Water",
+                spec_leather: "Leather Interior",
+                spec_ac: "A/C",
+                price_from_90: "from €90",
+                price_from_120: "from €120",
+                price_from_150: "from €150",
+                price_from_220: "from €220",
+                btn_select: "Select",
+                routes_label: "Destinations",
+                routes_title: "Popular Routes",
+                badge_popular: "Popular",
+                btn_order: "Order",
+                footer_text: "Premium transfer service. Operating since 2012.",
+                footer_contacts: "Contacts"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) el.innerHTML = translations[lang][key];
+            });
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if(translations[lang][key]) el.placeholder = translations[lang][key];
+            });
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLanguage('${lang}')"]`).classList.add('active');
+        }
+
+        // === STANDARD SCRIPTS ===
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         window.addEventListener('scroll', () => {
             scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
@@ -1117,7 +1324,7 @@
             item.classList.toggle('active');
         }
 
-        // ========== МОДАЛЬНОЕ ОКНО ==========
+        // Modal
         function openModal(carName) {
             document.getElementById('selectedCar').value = carName;
             document.getElementById('bookingModal').classList.add('active');
@@ -1129,12 +1336,11 @@
             document.body.style.overflow = '';
         }
 
-        // Закрытие по клику на фон
         document.getElementById('bookingModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        // Анимации при скролле
+        // Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -1145,44 +1351,20 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-        // Отправка формы в WhatsApp
-        document.getElementById('mainBookingForm').addEventListener('submit', function(e) {
+        // Form handlers
+        const handleForm = (e) => {
             e.preventDefault();
-            const name = this.querySelectorAll('input[type="text"]')[0].value;
-            const phone = this.querySelector('input[type="tel"]').value;
-            const from = this.querySelector('select').value;
-            const to = this.querySelectorAll('input[type="text"]')[1].value;
-            const date = this.querySelector('input[type="date"]').value;
-            const carClass = this.querySelectorAll('select')[1].value;
+            const inputs = e.target.querySelectorAll('input, select');
+            let message = "New Transfer Request:%0A";
+            inputs.forEach(input => {
+                if(input.value) message += `${input.value}%0A`;
+            });
+            window.open(`https://wa.me/393331234567?text=${message}`, '_blank');
+            if(e.target.id === 'modalForm') closeModal();
+        };
 
-            const message = `Здравствуйте! Хочу заказать трансфер:
-👤 Имя: ${name}
-📱 Телефон: ${phone}
-📍 Откуда: ${from}
-🏁 Куда: ${to}
-📅 Дата: ${date}
-🚗 Класс авто: ${carClass}`;
-
-            window.open(`https://wa.me/393331234567?text=${encodeURIComponent(message)}`, '_blank');
-        })
-
-        // Отправка формы из модалки
-        document.getElementById('modalForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const car = document.getElementById('selectedCar').value;
-            const name = this.querySelectorAll('input[type="text"]')[1].value;
-            const phone = this.querySelector('input[type="tel"]').value;
-            const date = this.querySelector('input[type="date"]').value;
-
-            const message = `Здравствуйте! Хочу забронировать автомобиль:
-🚗 Авто: ${car}
-👤 Имя: ${name}
-📱 Телефон: ${phone}
-📅 Дата: ${date}`;
-
-            window.open(`https://wa.me/393331234567?text=${encodeURIComponent(message)}`, '_blank');
-            closeModal();
-        })
+        document.getElementById('mainBookingForm').addEventListener('submit', handleForm);
+        document.getElementById('modalForm').addEventListener('submit', handleForm);
     </script>
 </body>
 </html>
